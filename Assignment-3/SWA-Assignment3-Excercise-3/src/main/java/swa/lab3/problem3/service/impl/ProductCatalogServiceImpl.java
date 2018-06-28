@@ -34,8 +34,11 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
 		stock.setLocationCode(locationCode);
 		
 		Product product = pr.findById(productNumber).orElse(null);
-		if(product != null)
-		product.addStock(stock);
+		if(product != null) {
+			product.addStock(stock);
+			pr.save(product);
+		}
+		
 		
 	}
 
