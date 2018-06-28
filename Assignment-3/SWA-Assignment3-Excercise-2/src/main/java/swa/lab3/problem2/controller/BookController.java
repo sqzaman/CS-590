@@ -32,7 +32,7 @@ public class BookController {
 	public ResponseEntity<?> getGreeting(@PathVariable("isbn") String isbn){
 		Book book = bookService.getBook(isbn);
 		if (book != null)
-		return new ResponseEntity<Book>(bookService.getBook(isbn),  HttpStatus.OK );
+		return new ResponseEntity<Book>(book,  HttpStatus.OK );
 		else 
 			return new ResponseEntity<NotFoundError>(new NotFoundError("no book found"), HttpStatus.NOT_FOUND);
 	}
