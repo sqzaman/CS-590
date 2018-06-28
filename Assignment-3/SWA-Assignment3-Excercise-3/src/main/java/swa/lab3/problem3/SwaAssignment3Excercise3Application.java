@@ -1,4 +1,4 @@
-package swa.lab3.problem2;
+package swa.lab3.problem3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
