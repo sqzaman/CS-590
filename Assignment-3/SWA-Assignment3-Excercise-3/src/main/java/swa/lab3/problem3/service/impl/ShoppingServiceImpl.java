@@ -1,6 +1,7 @@
 package swa.lab3.problem3.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import swa.lab3.problem3.domain.CartLine;
 import swa.lab3.problem3.domain.Product;
@@ -10,6 +11,7 @@ import swa.lab3.problem3.repository.ShoppingCartRepository;
 import swa.lab3.problem3.service.ShoppingService;
 import swa.lab3.problem3.util.Helper;
 
+@Service
 public class ShoppingServiceImpl implements ShoppingService {
 	@Autowired
 	ShoppingCartRepository shoppingCartRepo;
