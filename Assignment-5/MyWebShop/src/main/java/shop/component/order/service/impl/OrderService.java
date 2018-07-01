@@ -22,12 +22,12 @@ public class OrderService  implements IOrder {
 	OrderDomainService orderDomainService;	
 
 	@Override
-	public void createOrder(String customerId, String cartId) {
+	public String createOrder(String customerId, String cartId) {
 		OrderCustomerDto orderCustomerDto = new OrderCustomerDto(customerId);
 		OrderShoppingCartDto orderShoppingCartDto = new OrderShoppingCartDto(cartId);
 		
 		Order order = orderDomainService.createOrderFromShoppingCart(orderCustomerDto, orderShoppingCartDto);
-		orderRepository.save(order);
+		return orderRepository.save(order).getOrderId();
 	}
 
 	@Override

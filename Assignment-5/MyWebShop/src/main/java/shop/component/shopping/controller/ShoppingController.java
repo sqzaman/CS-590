@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import shop.component.shopping.domain.ShoppingCart;
+import shop.component.shopping.service.impl.ShoppingService;
+import shop.message.NotFoundMessage;
+import shop.message.SuccessMessage;
+
 
 @RestController
 @RequestMapping("/shoppingCart")
@@ -23,7 +28,7 @@ public class ShoppingController {
 			@RequestParam(value = "productId") final String productId,
 			@RequestParam(value = "quantity") final int quantity,
 			@RequestParam(value = "cartId", required = false) final String cartId) {
-		String cartIdentifier = shoppingService.addToCart(productId, quantity, cartId);
+		String cartIdentifier = shoppingService.addToCart(productId, cartId, quantity);
 		if (cartIdentifier != null && cartIdentifier != "") {
 			return new ResponseEntity<SuccessMessage>(
 					new SuccessMessage("Successfully added! cartId is in identifier", cartIdentifier), HttpStatus.OK);
@@ -32,9 +37,9 @@ public class ShoppingController {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	/*
+	
 	@GetMapping("/get/{cartId}")
-	public ResponseEntity<?> getGreeting(@PathVariable("cartId") String cartId) {
+	public ResponseEntity<?> getCart(@PathVariable("cartId") String cartId) {
 
 		ShoppingCart sc = shoppingService.getCart(cartId);
 		if (sc != null)
@@ -43,16 +48,18 @@ public class ShoppingController {
 			return new ResponseEntity<NotFoundMessage>(new NotFoundMessage("no shopping cart found"),
 					HttpStatus.NOT_FOUND);
 	}
-
+	
+	@SuppressWarnings("unused")
 	@PostMapping("/checkOut")
-	public ResponseEntity<?> checkOut(@RequestParam(value = "cartId") final String cartId) {
+	public ResponseEntity<?> checkOut(
+			@RequestParam(value = "customerId") final String customerId,
+			@RequestParam(value = "cartId") final String cartId) {
 
-		Order order = shoppingService.checkOut(cartId);
-		if (order != null)
-			return new ResponseEntity<Order>(order, HttpStatus.OK);
+		String orderId = shoppingService.checkOut(customerId, cartId);
+		if (orderId != null || orderId != "")
+			return new ResponseEntity<SuccessMessage>(new SuccessMessage("Successfully order created! orderId is in identifier", orderId), HttpStatus.OK);
 		else
-			return new ResponseEntity<NotFoundMessage>(new NotFoundMessage("no shopping cart found"),
+			return new ResponseEntity<NotFoundMessage>(new NotFoundMessage("no customer/shopping cart found"),
 					HttpStatus.NOT_FOUND);
-	}
-	*/
+	}	
 }

@@ -52,10 +52,10 @@ public class ShoppingService implements IShopping {
 	}
 	
 	@Override
-	public void checkOut(String customerId, String cartId) {
+	public String checkOut(String customerId, String cartId) {
 		//ShoppingCart shoppingCart = this.getCart(cartId);
 		//if(shoppingCart != null) {
-			orderService.createOrder(customerId, cartId);
+			return orderService.createOrder(customerId, cartId);
 		//}
 		//return null;
 	}
