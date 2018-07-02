@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import shop.component.product.domain.Product;
@@ -11,6 +12,7 @@ import shop.component.product.domain.service.ProductDomainService;
 import shop.component.product.repository.ProductRepository;
 import shop.component.product.service.IProduct;
 import shop.dto.ProductDto;
+import shop.event.OrderEventData;
 
 @Service
 public class ProductService implements IProduct {
@@ -60,6 +62,11 @@ public class ProductService implements IProduct {
 		});
 		
 		return productsDto;
+	}
+	
+	@EventListener
+	public void onEvent(OrderEventData event) {
+		System.out.println("New order placed product inventory need to updated, orderId: :" + event.getOrderId());;
 	}
 
 }

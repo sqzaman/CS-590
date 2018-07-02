@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import shop.component.customer.domain.customer.Customer;
@@ -11,6 +12,7 @@ import shop.component.customer.domain.service.CustomerDomainService;
 import shop.component.customer.domain.service.CustomerDomainService.AddressType;
 import shop.component.customer.repository.CustomerRepository;
 import shop.component.customer.service.ICustomer;
+import shop.event.OrderEventData;
 
 @Service
 public class CustomerService implements ICustomer {
@@ -65,7 +67,11 @@ public class CustomerService implements ICustomer {
 					AddressType.ShippingAddres);
 			customerRepository.save(customer);
 		}
-
+	}
+	
+	@EventListener
+	public void onEvent(OrderEventData event) {
+		System.out.println("Thank you dear customer for confirming the order, your orderId:" + event.getOrderId());;
 	}
 
 }

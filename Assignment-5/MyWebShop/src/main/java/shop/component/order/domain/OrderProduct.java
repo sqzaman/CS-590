@@ -4,24 +4,24 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class OrderProduct {
-	String productNumber;
+	String productId;
 	String name;
 	double price;
 
-	public OrderProduct(String productNumber, String name, double price) {
-		this.productNumber = productNumber;
+	public OrderProduct(String productId, String name, double price) {
+		this.productId = productId;
 		this.price = price;
 		this.name = name;
 	}
 
 	public OrderProduct() {
 	}
-	public String getProductNumber() {
-		return productNumber;
+	public String getProductId() {
+		return productId;
 	}
 
-	public void setProducNumber(String productNumber) {
-		this.productNumber = productNumber;
+	public void setProducId(String productId) {
+		this.productId = productId;
 	}
 
 	public double getPrice() {

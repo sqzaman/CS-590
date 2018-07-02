@@ -1,27 +1,17 @@
 package shop.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import shop.component.product.domain.Product;
-import shop.component.product.service.impl.ProductService;
-
 public class ShoppingProductDto {
 	
 	private String productId;
 	private String name;
 	private double price;
 
-	@Autowired
-	ProductService productService;
+
 	
-	public ShoppingProductDto(String productId) {
+	public ShoppingProductDto(String productId, String name, double price) {
 		this.productId = productId;		
-		Product product = productService.getProduct(productId);
-		if(product != null) {
-			this.setName(product.getName());
-			this.setPrice(product.getPrice());
-		}
-		
+		this.name = name;	
+		this.price = price;			
 	}
 
 	public String getProductId() {

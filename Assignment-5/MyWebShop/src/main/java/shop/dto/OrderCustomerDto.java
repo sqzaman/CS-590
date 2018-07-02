@@ -1,11 +1,8 @@
 package shop.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import shop.component.customer.domain.customer.CreditCard;
 import shop.component.customer.domain.customer.Customer;
 import shop.component.customer.domain.customer.CustomerAddress;
-import shop.component.customer.service.impl.CustomerService;
 import shop.component.order.domain.OrderAddress;
 
 public class OrderCustomerDto {
@@ -18,11 +15,10 @@ public class OrderCustomerDto {
 	private OrderAddress orderBillingAddress;
 	private OrderAddress orderShippingAddress;
 
-	@Autowired
-	CustomerService customerService;
+	
 
-	public OrderCustomerDto(String customerId) {
-		Customer customer = customerService.getCustomer(customerId);
+	public OrderCustomerDto(Customer customer) {
+		
 		this.customerId = customer.getCustomerId();
 		this.firstName = customer.getFirstName();
 		this.lastName = customer.getLastName();

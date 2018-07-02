@@ -17,10 +17,8 @@ public class OrderShoppingCartDto {
 	String cartId;
 	List<OrderItem> orderItems;
 
-	@Autowired
-	ShoppingService shoppingService;
-	public OrderShoppingCartDto(String cartId) {
-		ShoppingCart shoppingCart = shoppingService.getCart(cartId);		
+	public OrderShoppingCartDto(ShoppingCart shoppingCart) {
+		
 		orderItems = new ArrayList<OrderItem>();
 		this.cartId = shoppingCart.getCartId();
 		for(CartItem cartItem: shoppingCart.getCartItems()) {

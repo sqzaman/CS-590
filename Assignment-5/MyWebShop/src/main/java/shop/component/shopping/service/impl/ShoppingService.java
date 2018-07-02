@@ -10,6 +10,7 @@ import shop.component.shopping.domain.service.ShoppingCartDomainService;
 import shop.component.shopping.repository.ShoppingCartRepository;
 import shop.component.shopping.service.IShopping;
 import shop.dto.ShoppingProductDto;
+import shop.dto.service.ShopDtoService;
 import shop.util.Helper;
 
 
@@ -24,11 +25,14 @@ public class ShoppingService implements IShopping {
 	@Autowired
 	OrderService orderService;
 	
+	@Autowired
+	ShopDtoService shopDtoService;
+	
 	
 	@Override
 	public String addToCart(String productId, String cartId, int quantity) {
 		ShoppingCart shoppingCart = null;
-		ShoppingProductDto shoppingProductDto = new ShoppingProductDto(productId);
+		ShoppingProductDto shoppingProductDto = shopDtoService.getShoppingProductDto(productId);
 		if(cartId == null || cartId == "") {
 			shoppingCart =  shoppingCartDomainService.createNewShoppingCart(Helper.getInstance().generateRandomString());
 		} else {
@@ -39,8 +43,8 @@ public class ShoppingService implements IShopping {
 			shoppingCartDomainService.addItemToCart(shoppingCart, 
 					new Product(shoppingProductDto.getProductId(),
 							shoppingProductDto.getName(), shoppingProductDto.getPrice()), quantity);
-			shoppingCartRepo.save(shoppingCart);
-			return cartId;
+			return shoppingCartRepo.save(shoppingCart).getCartId();
+			//return cartId;
 		}
 		
 		return null;
