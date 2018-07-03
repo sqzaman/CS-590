@@ -6,6 +6,7 @@ public class OrderAddressDto {
 	String zip;
 	String state;
 	String country;
+	public OrderAddressDto() {}
 	public OrderAddressDto(String street, String city, String zip, String state, String country) {
 		this.street = street;
 		this.city = city;

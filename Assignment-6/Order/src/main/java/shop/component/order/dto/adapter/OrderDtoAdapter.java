@@ -31,6 +31,7 @@ public class OrderDtoAdapter {
 		RestTemplate restTemplate = new RestTemplate();
 		OrderCustomerDto orderCustomerDto = restTemplate
 				.getForObject("http://localhost:8083/customer/get/" + customerId, OrderCustomerDto.class);
+		System.out.println("CustomerId: "+customerId);
 		return orderCustomerDto;
 	}
 
@@ -62,7 +63,7 @@ public class OrderDtoAdapter {
 	}
 	
 	public OrderAddress getOrderBillingAddress(OrderCustomerDto orderCustomerDto) {
-		OrderAddressDto orderAddressDto = orderCustomerDto.getOrderBillingAddress();
+		OrderAddressDto orderAddressDto = orderCustomerDto.getBillingAddress();
 		return new OrderAddress(orderAddressDto.getStreet(), 
 				orderAddressDto.getCity(), orderAddressDto.getZip(),
 				orderAddressDto.getState(), orderAddressDto.getCountry()
@@ -70,7 +71,7 @@ public class OrderDtoAdapter {
 	}
 	
 	public OrderAddress getOrderShippingAddress(OrderCustomerDto orderCustomerDto) {
-		OrderAddressDto orderAddressDto = orderCustomerDto.getOrderShippingAddress();
+		OrderAddressDto orderAddressDto = orderCustomerDto.getShippingAddress();
 		return new OrderAddress(orderAddressDto.getStreet(), 
 				orderAddressDto.getCity(), orderAddressDto.getZip(),
 				orderAddressDto.getState(), orderAddressDto.getCountry()

@@ -49,10 +49,13 @@ public class OrderService implements IOrder {
 	}
 
 	public Order createOrder(OrderShoppingCartDto shoppingCartDto) {
+		System.out.println("CustomerID: " + shoppingCartDto.getCustomerId());
+		System.out.println("=====================================================");
 		OrderCustomerDto orderCustomerDto = orderDtoAdapter.getOrderCustomerDto(shoppingCartDto.getCustomerId());
+		System.out.println(orderCustomerDto);
 		Order order = orderDomainService.createOrder(orderDtoAdapter.getOrderCustomer(orderCustomerDto),
 				orderDtoAdapter.getOrderItems(shoppingCartDto.getCartItems()),
-				orderDtoAdapter.getOrderCreditCard(orderCustomerDto.getCreditCard()),
+				orderDtoAdapter.getOrderCreditCard(orderCustomerDto.getCreditCards().get(0)),
 				orderDtoAdapter.getOrderBillingAddress(orderCustomerDto),
 				orderDtoAdapter.getOrderShippingAddress(orderCustomerDto));
 

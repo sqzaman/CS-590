@@ -1,5 +1,7 @@
 package shop.component.order.dto;
 
+import java.util.List;
+
 import shop.component.order.domain.OrderAddress;
 
 public class OrderCustomerDto {
@@ -9,9 +11,9 @@ public class OrderCustomerDto {
 	private String lastName;
 	private String email;
 	private String phone;
-	private CreditCardDto creditCard;
-	private OrderAddressDto orderBillingAddress;
-	private OrderAddressDto orderShippingAddress;
+	private List<CreditCardDto> creditCards;
+	private OrderAddressDto billingAddress;
+	private OrderAddressDto shippingAddress;
 
 	public OrderCustomerDto() {	
 	
@@ -57,16 +59,23 @@ public class OrderCustomerDto {
 		this.phone = phone;
 	}
 
-	public CreditCardDto getCreditCard() {
-		return creditCard;
+	public List<CreditCardDto> getCreditCards() {
+		return creditCards;
+	}
+	
+	public void setCreditCards(List<CreditCardDto> creditCards) {
+		this.creditCards = creditCards;
 	}
 
-	public OrderAddressDto getOrderBillingAddress() {
-		return orderBillingAddress;
+	public void addCreditCard(CreditCardDto creditCard) {
+		this.creditCards.add(creditCard);
+	}
+	public OrderAddressDto getBillingAddress() {
+		return billingAddress;
 	}
 
-	public OrderAddressDto getOrderShippingAddress() {
-		return orderShippingAddress;
+	public OrderAddressDto getShippingAddress() {
+		return shippingAddress;
 	}
 
 }

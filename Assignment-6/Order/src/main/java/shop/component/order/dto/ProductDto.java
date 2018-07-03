@@ -8,7 +8,9 @@ public class ProductDto {
 	String description;
 	double price;
 
-
+	public ProductDto() {
+		
+	}
 	public ProductDto(String productId, String name, String description, double price) {
 		this.productId = productId;
 		this.name = name;
