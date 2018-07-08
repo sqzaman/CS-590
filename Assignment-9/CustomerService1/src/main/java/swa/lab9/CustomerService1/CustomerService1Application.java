@@ -1,4 +1,4 @@
-package swa.lab9.CustomerServiceLoadBalancing;
+package swa.lab9.CustomerService1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,9 +8,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class CustomerServiceLoadBalancingApplication {
+public class CustomerService1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CustomerServiceLoadBalancingApplication.class, args);
+		SpringApplication.run(CustomerService1Application.class, args);
 	}
 }

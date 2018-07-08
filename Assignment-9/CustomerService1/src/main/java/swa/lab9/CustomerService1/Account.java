@@ -1,4 +1,4 @@
-package swa.lab9.CustomerServiceLoadBalancing;
+package swa.lab9.CustomerService1;
 
 public class Account {
 	
