@@ -1,0 +1,18 @@
+server:
+  port: 8088
+  
+zuul:
+  prefix: /api
+  routes:
+    product: 
+      path: /product/**
+      serviceId: WebshopProductService
+    customer: 
+      path: /customer/**
+      serviceId: WebshopCustomerService
+    shopping: 
+      path: /shopping/**
+      serviceId: WebshopShoppingService
+    order: 
+      path: /order/**
+      serviceId: WebshopOrderService 
